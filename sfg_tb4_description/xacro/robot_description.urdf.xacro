@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<robot name="tb4" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find sfg_peripherals_description)/xacro/htc_vive_tracker_30.xacro" />
+    <xacro:include filename="$(find sfg_peripherals_description)/xacro/livox_mid360.xacro" />
+    <xacro:include filename="$(find sfg_peripherals_description)/xacro/luxonis_oakd_pro.xacro" />
+
+    <link name="base">
+        <visual>
+            <geometry>
+                <mesh filename="package://sfg_tb4_description/mesh/base.dae" scale="1 1 1" />
+            </geometry>
+        </visual>
+    </link>
+
+    <!-- camera head mount -->
+    <joint name="camera_head_mount_joint" type="fixed">
+        <parent link="base" />
+        <child link="camera_head_mount" />
+        <origin rpy="0 0 0" xyz="-0.10001 -0.00001 0.14596" />
+    </joint>
+
+    <link name="camera_head_mount">
+        <visual>
+            <geometry>
+                <mesh filename="package://sfg_tb4_description/mesh/camera_head_mount.dae"
+                    scale="1 1 1" />
+            </geometry>
+        </visual>
+    </link>
+
+    <!-- camera head -->
+    <xacro:luxonis_oakd_pro name="camera_head" parent="camera_head_mount">
+        <origin rpy="${0.5 * pi} 0 ${0.5 * pi}" xyz="0.01774 0 0.092" />
+    </xacro:luxonis_oakd_pro>
+</robot>
