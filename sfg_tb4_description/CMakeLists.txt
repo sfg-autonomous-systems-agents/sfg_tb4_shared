@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(sfg_go2_description)
+project(sfg_tb4_description)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -19,16 +19,10 @@ find_package(xacro REQUIRED)
 # Add other files/directories.                                                                           #
 # ########################################################################################################
 install(DIRECTORY
-  "config"
   "mesh"
+  "xacro"
   DESTINATION "share/${PROJECT_NAME}/"
 )
-
-set(xacro_files
-  "xacro/robot_description.urdf.xacro"
-)
-
-xacro_add_files(${xacro_files} TARGET xacro INSTALL DESTINATION "urdf")
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
