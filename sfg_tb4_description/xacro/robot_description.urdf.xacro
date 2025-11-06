@@ -12,66 +12,66 @@
         </visual>
     </link>
 
-    <!-- camera head mount -->
-    <joint name="camera_head_mount_joint" type="fixed">
+    <!-- camera back mount -->
+    <joint name="camera_back_mount_joint" type="fixed">
         <parent link="base" />
-        <child link="camera_head_mount" />
+        <child link="camera_back_mount" />
         <origin rpy="0 0 0" xyz="-0.10001 -0.00001 0.14596" />
     </joint>
 
-    <link name="camera_head_mount">
+    <link name="camera_back_mount">
         <visual>
             <geometry>
-                <mesh filename="package://sfg_tb4_description/mesh/camera_head_mount.dae"
+                <mesh filename="package://sfg_tb4_description/mesh/camera_back_mount.dae"
                     scale="1 1 1" />
             </geometry>
         </visual>
     </link>
 
-    <!-- camera head -->
-    <xacro:luxonis_oakd_pro name="camera_head" parent="camera_head_mount">
+    <!-- camera back -->
+    <xacro:luxonis_oakd_pro name="camera_back" parent="camera_back_mount">
         <origin rpy="${0.5 * pi} 0 ${0.5 * pi}" xyz="0.01774 0 0.092" />
     </xacro:luxonis_oakd_pro>
 
-    <!-- tracker mount -->
-    <joint name="tracker_mount_joint" type="fixed">
+    <!-- tracker left mount -->
+    <joint name="tracker_left_mount_joint" type="fixed">
         <parent link="base" />
-        <child link="tracker_mount" />
+        <child link="tracker_left_mount" />
         <origin rpy="0 0 0" xyz="-0.03401 0.08 0.14596" />
     </joint>
 
-    <link name="tracker_mount">
+    <link name="tracker_left_mount">
         <visual>
             <geometry>
-                <mesh filename="package://sfg_tb4_description/mesh/tracker_mount.dae"
+                <mesh filename="package://sfg_tb4_description/mesh/tracker_left_mount.dae"
                     scale="1 1 1" />
             </geometry>
         </visual>
     </link>
 
-    <!-- tracker -->
-    <xacro:htc_vive_tracker_30 name="tracker" parent="tracker_mount">
+    <!-- tracker left -->
+    <xacro:htc_vive_tracker_30 name="tracker_left" parent="tracker_left_mount">
         <origin rpy="0 0 ${-0.5 * pi}" xyz="0 0 0.00825" />
     </xacro:htc_vive_tracker_30>
 
-    <!-- lidar back mount -->
-    <joint name="lidar_back_mount_joint" type="fixed">
+    <!-- lidar right mount -->
+    <joint name="lidar_right_mount_joint" type="fixed">
         <parent link="base" />
-        <child link="lidar_back_mount" />
+        <child link="lidar_right_mount" />
         <origin rpy="0 0 0" xyz="-0.03395 -0.08 0.14596" />
     </joint>
 
-    <link name="lidar_back_mount">
+    <link name="lidar_right_mount">
         <visual>
             <geometry>
-                <mesh filename="package://sfg_tb4_description/mesh/lidar_back_mount.dae"
+                <mesh filename="package://sfg_tb4_description/mesh/lidar_right_mount.dae"
                     scale="1 1 1" />
             </geometry>
         </visual>
     </link>
 
-    <!-- lidar back -->
-    <xacro:livox_mid360 name="lidar_back" parent="lidar_back_mount">
+    <!-- lidar right -->
+    <xacro:livox_mid360 name="lidar_right" parent="lidar_right_mount">
         <origin rpy="0 0 ${-0.5 * pi}" xyz="0.00006 0 0.0065" />
     </xacro:livox_mid360>
 </robot>
