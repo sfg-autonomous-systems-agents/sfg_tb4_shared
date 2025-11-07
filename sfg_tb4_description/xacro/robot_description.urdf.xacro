@@ -30,7 +30,7 @@
 
     <!-- camera back -->
     <xacro:luxonis_oakd_pro name="camera_back" parent="camera_back_mount">
-        <origin rpy="${0.5 * pi} 0 ${0.5 * pi}" xyz="0.01774 0 0.092" />
+        <origin rpy="${0.5 * pi} ${0.5 * pi} ${0.5 * pi}" xyz="0.01774 0 0.092" />
     </xacro:luxonis_oakd_pro>
 
     <!-- tracker left mount -->
@@ -72,6 +72,6 @@
 
     <!-- lidar right -->
     <xacro:livox_mid360 name="lidar_right" parent="lidar_right_mount">
-        <origin rpy="0 0 ${-0.5 * pi}" xyz="0.00006 0 0.0065" />
+        <origin rpy="0 0 ${0.5 * pi}" xyz="0.00006 0 0.0065" />
     </xacro:livox_mid360>
 </robot>
