@@ -12,6 +12,53 @@
     </visual>
   </link>
 
+  <!-- left wheel -->
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base" />
+    <child link="left_wheel" />
+    <origin rpy="${pi/2} 0 0" xyz="-0.0005 0.11755 0.03605" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="left_wheel">
+    <collision>
+      <geometry>
+        <cylinder radius="0.036" length="0.015" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- right wheel -->
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base" />
+    <child link="right_wheel" />
+    <origin rpy="${pi/2} 0 0" xyz="-0.0005 -0.11755 0.03605" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+  <link name="right_wheel">
+    <collision>
+      <geometry>
+        <cylinder radius="0.036" length="0.015" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- caster wheel -->
+  <joint name="caster_wheel_joint" type="fixed">
+    <parent link="base" />
+    <child link="caster_wheel" />
+    <origin rpy="0 0 0" xyz="0.126 0 0.01389" />
+  </joint>
+
+  <link name="caster_wheel">
+    <collision>
+      <geometry>
+        <sphere radius="0.013" />
+      </geometry>
+    </collision>
+  </link>
+
   <!-- camera back mount -->
   <joint name="camera_back_mount_joint" type="fixed">
     <parent link="base" />
