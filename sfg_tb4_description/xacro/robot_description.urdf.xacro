@@ -11,11 +11,43 @@
         </visual>
     </link>
 
-    <!-- camera back mount -->
-    <joint name="camera_back_mount_joint" type="fixed">
+    <!-- left wheel -->
+    <joint name="left_wheel_joint" type="continuous">
         <parent link="base" />
-        <child link="camera_back_mount" />
-        <origin rpy="0 0 0" xyz="-0.10001 -0.00001 0.14596" />
+        <child link="left_wheel" />
+        <origin rpy="${pi/2} 0 0" xyz="-0.0005 0.11755 0.03605" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <link name="left_wheel">
+        <collision>
+            <geometry>
+                <cylinder radius="0.036" length="0.015" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- right wheel -->
+    <joint name="right_wheel_joint" type="continuous">
+        <parent link="base" />
+        <child link="right_wheel" />
+        <origin rpy="${pi/2} 0 0" xyz="-0.0005 -0.11755 0.03605" />
+        <axis xyz="0 1 0" />
+    </joint>
+
+    <link name="right_wheel">
+        <collision>
+            <geometry>
+                <cylinder radius="0.036" length="0.015" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- lidar right mount -->
+    <joint name="lidar_right_mount_joint" type="fixed">
+        <parent link="base" />
+        <child link="lidar_right_mount" />
+        <origin rpy="0 0 0" xyz="-0.03395 -0.08 0.14596" />
     </joint>
 
     <link name="camera_back_mount">
@@ -31,6 +63,27 @@
     <xacro:luxonis_oakd_pro name="camera_back" parent="camera_back_mount">
         <origin rpy="${0.5 * pi} ${0.5 * pi} ${0.5 * pi}" xyz="0.01774 0 0.092" />
     </xacro:luxonis_oakd_pro>
+
+    <!-- tracker left mount -->
+    <joint name="tracker_left_mount_joint" type="fixed">
+        <parent link="base" />
+        <child link="tracker_left_mount" />
+        <origin rpy="0 0 0" xyz="-0.03401 0.08 0.14596" />
+    </joint>
+
+    <link name="tracker_left_mount">
+        <visual>
+            <geometry>
+                <mesh filename="package://sfg_tb4_description/mesh/tracker_left_mount.dae"
+                    scale="1 1 1" />
+            </geometry>
+        </visual>
+    </link>
+
+    <!-- tracker left -->
+    <xacro:htc_vive_tracker_30 name="tracker_left" parent="tracker_left_mount">
+        <origin rpy="0 0 ${-0.5 * pi}" xyz="0 0 0.00825" />
+    </xacro:htc_vive_tracker_30>
 
     <!-- lidar right mount -->
     <joint name="lidar_right_mount_joint" type="fixed">
