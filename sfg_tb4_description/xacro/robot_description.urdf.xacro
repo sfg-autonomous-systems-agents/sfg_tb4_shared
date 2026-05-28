@@ -1,19 +1,21 @@
 <?xml version="1.0"?>
 <robot name="tb4" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find sfg_peripherals_description)/xacro/base_marker_tree.xacro" />
   <xacro:include filename="$(find sfg_peripherals_description)/xacro/livox_mid360.xacro" />
   <xacro:include filename="$(find sfg_peripherals_description)/xacro/luxonis_oakd_pro.xacro" />
 
-  <link name="base">
+  <link name="base_link">
     <visual>
+      <origin xyz="0 0 0" rpy="${0.5 * pi} 0 0" />
       <geometry>
-        <mesh filename="package://sfg_tb4_description/mesh/base.dae" scale="1 1 1" />
+        <mesh filename="package://sfg_tb4_description/mesh/base_link.glb" />
       </geometry>
     </visual>
   </link>
 
   <!-- left wheel -->
   <joint name="left_wheel_joint" type="continuous">
-    <parent link="base" />
+    <parent link="base_link" />
     <child link="left_wheel" />
     <origin rpy="${pi/2} 0 0" xyz="-0.0005 0.11755 0.03605" />
     <axis xyz="0 1 0" />
@@ -29,7 +31,7 @@
 
   <!-- right wheel -->
   <joint name="right_wheel_joint" type="continuous">
-    <parent link="base" />
+    <parent link="base_link" />
     <child link="right_wheel" />
     <origin rpy="${pi/2} 0 0" xyz="-0.0005 -0.11755 0.03605" />
     <axis xyz="0 1 0" />
@@ -45,7 +47,7 @@
 
   <!-- caster wheel -->
   <joint name="caster_wheel_joint" type="fixed">
-    <parent link="base" />
+    <parent link="base_link" />
     <child link="caster_wheel" />
     <origin rpy="0 0 0" xyz="0.126 0 0.01389" />
   </joint>
@@ -60,16 +62,16 @@
 
   <!-- camera back mount -->
   <joint name="camera_back_mount_joint" type="fixed">
-    <parent link="base" />
+    <parent link="base_link" />
     <child link="camera_back_mount" />
     <origin rpy="0 0 0" xyz="-0.10001 -0.00001 0.14596" />
   </joint>
 
   <link name="camera_back_mount">
     <visual>
+      <origin xyz="0 0 0" rpy="${0.5 * pi} 0 0" />
       <geometry>
-        <mesh filename="package://sfg_tb4_description/mesh/camera_back_mount.dae"
-          scale="1 1 1" />
+        <mesh filename="package://sfg_tb4_description/mesh/camera_back_mount.glb" />
       </geometry>
     </visual>
   </link>
@@ -79,28 +81,46 @@
     <origin rpy="${0.5 * pi} ${0.5 * pi} ${0.5 * pi}" xyz="0.01774 0 0.092" />
   </xacro:luxonis_oakd_pro>
 
-  <!-- ToDo tracker left mount -->
+  <!--tracker
+  left mount -->
+  <joint name="tracker_left_mount_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="tracker_left_mount" />
+    <origin rpy="0 0 0" xyz=" -0.03401 0.08 0.14596" />
+  </joint>
 
-  <!-- ToDo tracker left -->
+  <link name="tracker_left_mount">
+    <visual>
+      <origin xyz="0 0 0" rpy="${0.5 * pi} 0 0" />
+      <geometry>
+        <mesh filename="package://sfg_tb4_description/mesh/tracker_left_mount.glb" />
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- tracker left -->
+  <xacro:base_marker_tree name="tracker_left" parent="tracker_left_mount">
+    <origin xyz="0 0 0.005" rpy="0 0 ${-0.5 * pi}" />
+  </xacro:base_marker_tree>
 
   <!-- lidar right mount -->
   <joint name="lidar_right_mount_joint" type="fixed">
-    <parent link="base" />
+    <parent link="base_link" />
     <child link="lidar_right_mount" />
-    <origin rpy="0 0 0" xyz="-0.03395 -0.08 0.14596" />
+    <origin rpy="0 0 0" xyz="-0.03401 -0.08 0.14596" />
   </joint>
 
   <link name="lidar_right_mount">
     <visual>
+      <origin xyz="0 0 0" rpy="${0.5 * pi} 0 0" />
       <geometry>
-        <mesh filename="package://sfg_tb4_description/mesh/lidar_right_mount.dae"
-          scale="1 1 1" />
+        <mesh filename="package://sfg_tb4_description/mesh/lidar_right_mount.glb" />
       </geometry>
     </visual>
   </link>
 
   <!-- lidar right -->
   <xacro:livox_mid360 name="lidar_right" parent="lidar_right_mount">
-    <origin rpy="0 0 ${0.5 * pi}" xyz="0.00006 0 0.0065" />
+    <origin rpy="0 0 ${0.5 * pi}" xyz="0 0 0.0065" />
   </xacro:livox_mid360>
 </robot>
