@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 *.dae filter=lfs diff=lfs merge=lfs -text
+=======
+*.glb filter=lfs diff=lfs merge=lfs -text
+>>>>>>> c4bc9ab48ef95f6e99a310a1c00037cb0cd3bf36
