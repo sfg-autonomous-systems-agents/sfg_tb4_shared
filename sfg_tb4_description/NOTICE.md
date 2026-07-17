@@ -7,7 +7,7 @@ This software incorporates or modifies third-party open-source software. The fol
 * **Author:** Clearpath Robotics, Inc. / iRobot
 * **License:** Apache 2.0
 * **Affected Directories/Files:**
-  * [`base_link.glb`](sfg_tb4_description/mesh/base_link.glb): Contains a modified, algorithmically simplified mesh derived from the original repository assets.
+    * [`base_link.glb`](sfg_tb4_description/mesh/base_link.glb): Contains a modified, algorithmically simplified mesh derived from the original repository assets.
 
 ### License Notice
 
